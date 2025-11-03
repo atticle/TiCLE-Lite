@@ -3,12 +3,14 @@ __version__ = "1.0.0"
 from ticle import (
     utime,
     micropython,
-    I2c
 )
+from machine import I2C
 
 class HD44780_PCF8574:
     def __init__(self, scl:int, sda:int, *, addr:int=0x3f, freq:int=400_000, cols:int=16, rows:int=2):
-        self.__i2c = I2c(sda=sda, scl=scl, addr=addr, freq=freq)
+        self.__i2c = I2C(sda=sda, scl=scl, freq=freq)
+
+        self.__addr = addr
 
         self.__cols = int(cols)
         self.__rows = int(rows)
@@ -28,12 +30,12 @@ class HD44780_PCF8574:
         self.__gh = self.__rows * 8
         self.__gfb = bytearray(self.__gw * self.__gh)
 
-        self.__i2c.writeto(bytes([0x00]))
+        self.__i2c.writeto(self.__addr, bytes([0x00]))
         utime.sleep_us(20_000)
         for _ in range(3):
-            self.__i2c.writeto(bytes((0x30 | 0x04, 0x30)))  # EN pulse packed
+            self.__i2c.writeto(self.__addr, bytes((0x30 | 0x04, 0x30)))  # EN pulse packed
             utime.sleep_us(5_000)
-        self.__i2c.writeto(bytes((0x20 | 0x04, 0x20)))
+        self.__i2c.writeto(self.__addr, bytes((0x20 | 0x04, 0x20)))
         utime.sleep_us(1_000)
 
         self.__cmd(0x20 | (0x08 if self.__rows > 1 else 0x00))
@@ -55,7 +57,7 @@ class HD44780_PCF8574:
         tx[1] = b0
         tx[2] = b1 | 0x04
         tx[3] = b1
-        self.__i2c.writeto(tx)
+        self.__i2c.writeto(self.__addr, tx)
 
         if rs == 0 and data <= 3:
             utime.sleep_us(5_000)

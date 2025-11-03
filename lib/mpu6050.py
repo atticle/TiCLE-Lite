@@ -1,6 +1,6 @@
 from math import sqrt, atan2
 from machine import Pin, SoftI2C
-from time import sleep_ms
+from utime import sleep_ms
 
 error_msg = "\nError \n"
 i2c_err_str = "ESP32 could not communicate with module at address 0x{:02X}, check wiring"

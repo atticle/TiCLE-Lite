@@ -1,17 +1,16 @@
 # ir_remote.py
 # MicroPython IR receiver (NEC + SONY SIRC)
-# Author: ChatGPT (TiCLE Lite)
 # License: MIT
 
 from machine import Pin
-import time
+import utime
 from collections import deque
 
 def us():
-    return time.ticks_us()
+    return utime.ticks_us()
 
 def diff(a, b):
-    return time.ticks_diff(a, b)
+    return utime.ticks_diff(a, b)
 
 def in_range(v, target, tol=0.25):
     lo = target * (1.0 - tol)
@@ -193,7 +192,7 @@ class IRReceiver:
         return IRFrame("SIRC", address=addr, command=cmd, bits=len(bits), value=value, raw=seq)
 
     def read(self, timeout_ms=0):
-        t0 = time.ticks_ms()
+        t0 = utime.ticks_ms()
         while True:
             seq = self._drain_frame()
             if seq:
@@ -209,9 +208,9 @@ class IRReceiver:
                 return IRFrame("UNKNOWN", raw=seq)
             if timeout_ms <= 0:
                 return None
-            if time.ticks_diff(time.ticks_ms(), t0) > timeout_ms:
+            if utime.ticks_diff(utime.ticks_ms(), t0) > timeout_ms:
                 return None
-            time.sleep_ms(1)
+            utime.sleep_ms(1)
 
     def clear_buffer(self):
         self.buf.clear()

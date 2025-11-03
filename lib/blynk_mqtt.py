@@ -1,7 +1,4 @@
-# SPDX-FileCopyrightText: 2024 Volodymyr Shymanskyy
-# SPDX-License-Identifier: Apache-2.0
-
-import gc, sys, time, machine, json, asyncio
+import gc, sys, utime, machine, json, asyncio
 from umqtt.simple2 import MQTTClient, MQTTException
 
 LOGO = r"""
@@ -71,7 +68,7 @@ class BlynkDevice:
             await asyncio.sleep_ms(10)
             if not self._connected:
                 if self._ssl_ctx:
-                    # Ensure system time is sane before TLS
+                    # Ensure system utime is sane before TLS
                     while not self._update_ntp_time():
                         await asyncio.sleep(1)
                 try:
@@ -199,35 +196,17 @@ class BlynkDevice:
 
     @classmethod
     def _update_ntp_time(cls) -> bool:
-        Jan24 = 756_864_000 if (time.gmtime(0)[0] == 2000) else 1_704_067_200
-        if time.time() > Jan24:
+        Jan24 = 756_864_000 if (utime.gmtime(0)[0] == 2000) else 1_704_067_200
+        if utime.time() > Jan24:
             return True
-        print("Getting NTP time...")
+        print("Getting NTP utime...")
         import ntptime
         try:
             ntptime.timeout = 5
             ntptime.settime()
-            if time.time() > Jan24:
-                print("UTC Time:", cls._time2str(time.gmtime()))
+            if utime.time() > Jan24:
+                print("UTC utime:", cls._time2str(utime.gmtime()))
                 return True
         except Exception as e:
             print("NTP failed:", e)
         return False
-
-
-# ---------- Minimal usage example ----------
-# async def main():
-#     def on_msg(topic, payload):
-#         print("RX:", topic, payload)
-#
-#     dev = BlynkDevice(
-#         template_id="YOUR_TEMPLATE_ID",
-#         auth_token="YOUR_AUTH_TOKEN",
-#         broker="blynk.cloud",        # or None to use redirect
-#         firmware_version="0.0.1",
-#         on_message=on_msg,
-#     )
-#     # dev.subscribe("uplink/#")  # if you need extra subs
-#     await dev.run()
-#
-# asyncio.run(main())
