@@ -2,7 +2,7 @@ from ws2812 import WS2812Matrix
 import utime, urandom
 
 W=16; H=16; N=20
-m=WS2812Matrix([(3,1)])
+m=WS2812Matrix([(0,1)])
 m.clear()
 
 def rnd(n): return urandom.getrandbits(16)%n
