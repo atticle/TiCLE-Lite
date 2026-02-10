@@ -1,5 +1,6 @@
-import gc, sys, utime, machine, json, asyncio
-from umqtt.simple2 import MQTTClient, MQTTException
+import gc, sys, time, machine, json
+import uasyncio as asyncio
+from upaho.client import Client
 
 LOGO = r"""
       ___  __          __
@@ -10,6 +11,114 @@ LOGO = r"""
 """
 
 def _noop(*_): pass
+
+def _patch_ssl_layer():
+    try:
+        import ssl
+    except Exception:
+        return
+
+    if getattr(ssl, "_ticle_patched", False):
+        return
+
+    orig = getattr(ssl, "wrap_socket", None)
+
+    def _need_wrap(s):
+        return (not hasattr(s, "settimeout")) or (not hasattr(s, "ioctl"))
+
+    class _Compat:
+        __slots__ = ("_s", "_r")
+        def __init__(self, sslsock, rawsock):
+            self._s = sslsock
+            self._r = rawsock
+
+        def settimeout(self, t):
+            r = self._r
+            if r and hasattr(r, "settimeout"):
+                try:
+                    r.settimeout(t)
+                except Exception:
+                    pass
+            return None
+
+        def setblocking(self, flag):
+            r = self._r
+            if r and hasattr(r, "setblocking"):
+                try:
+                    r.setblocking(flag)
+                except Exception:
+                    pass
+            return None
+
+        def ioctl(self, req, arg):
+            r = self._r
+            if r and hasattr(r, "ioctl"):
+                try:
+                    return r.ioctl(req, arg)
+                except Exception:
+                    return 0
+            try:
+                return self._s.ioctl(req, arg)
+            except Exception:
+                return 0
+
+        def fileno(self):
+            try:
+                return self._s.fileno()
+            except Exception:
+                try:
+                    return self._r.fileno()
+                except Exception:
+                    return -1
+
+        def close(self):
+            try:
+                self._s.close()
+            except Exception:
+                pass
+            try:
+                if self._r and self._r is not self._s:
+                    self._r.close()
+            except Exception:
+                pass
+
+        def __getattr__(self, name):
+            return getattr(self._s, name)
+
+    if orig:
+        def wrap_socket(sock, *args, **kwargs):
+            server_hostname = kwargs.get("server_hostname", None)
+            try:
+                ss = orig(sock, *args, **kwargs)
+            except TypeError:
+                try:
+                    ss = orig(sock, server_hostname=server_hostname)
+                except Exception:
+                    ss = orig(sock)
+            return _Compat(ss, sock) if _need_wrap(ss) else ss
+
+        ssl.wrap_socket = wrap_socket
+
+    if hasattr(ssl, "SSLContext"):
+        try:
+            _orig_ctx_wrap = ssl.SSLContext.wrap_socket
+
+            def _ctx_wrap(self, sock, *args, **kwargs):
+                server_hostname = kwargs.get("server_hostname", None)
+                try:
+                    ss = _orig_ctx_wrap(self, sock, *args, **kwargs)
+                except TypeError:
+                    try:
+                        ss = _orig_ctx_wrap(self, sock, server_hostname=server_hostname)
+                    except Exception:
+                        ss = _orig_ctx_wrap(self, sock)
+                return _Compat(ss, sock) if _need_wrap(ss) else ss
+
+            ssl.SSLContext.wrap_socket = _ctx_wrap
+        except Exception:
+            pass
+
+    ssl._ticle_patched = True
 
 
 class BlynkDevice:
@@ -23,105 +132,113 @@ class BlynkDevice:
         on_connected=_noop,
         on_disconnected=_noop,
         on_message=_noop,
+        keepalive: int = 45,
+        tls: bool = True,
+        port: int | None = None,
     ):
         print(LOGO)
 
         self.template_id = template_id
         self.auth_token = auth_token
-        self.broker = broker
+        self.broker = broker or "blynk.cloud"
         self.firmware_version = firmware_version
+        self.cafile = cafile
 
         self.on_connected = on_connected
         self.on_disconnected = on_disconnected
         self.user_on_message = on_message
 
-        self.connection_count = 0
-        self._connected = False
-        self._ssl_ctx = None
+        self.keepalive = keepalive
+        self._tls = tls
+        self._port = port if port is not None else (8883 if tls else 1883)
 
-        if sys.platform in ("esp32", "rp2", "linux"):
-            import ssl
-            self._ssl_ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-            self._ssl_ctx.verify_mode = ssl.CERT_REQUIRED
+        self._pending_subs = []
+        self._pending_pubs = []
+
+        _patch_ssl_layer()
+
+        self._mqtt = Client(client_id="")
+        self._mqtt.username_pw_set("device", self.auth_token)
+        self._mqtt.on_message = self._on_message
+
+        if self._tls:
             try:
-                self._ssl_ctx.load_verify_locations(cafile=cafile)
+                self._mqtt.tls_set(self.cafile)
             except Exception as e:
-                # If CA isn't available, fall back to insecure (not recommended)
-                print("CA load failed:", e)
-
-        self._mqtt = MQTTClient(
-            client_id="",
-            server=self.broker,
-            ssl=self._ssl_ctx,
-            user="device",
-            password=self.auth_token,
-            keepalive=45,
-        )
-        self._mqtt.set_callback(self._on_message)
-        self._mqtt.connect()
-
-    # ---------- Public API ----------
+                print("[MQTT ERROR] tls_set failed:", e)
 
     async def run(self):
-        """Main loop; schedule this with asyncio.create_task(...) or await directly."""
         while True:
             await asyncio.sleep_ms(10)
-            if not self._connected:
-                if self._ssl_ctx:
-                    # Ensure system utime is sane before TLS
+
+            if not self._mqtt.is_connected():
+                if self._tls:
                     while not self._update_ntp_time():
                         await asyncio.sleep(1)
+
                 try:
-                    await self._mqtt_connect()
-                    self._connected = True
-                except Exception as e:
-                    if isinstance(e, OSError):
-                        print("Connection failed:", e)
-                        await asyncio.sleep(5)
-                    elif isinstance(e, AttributeError):
-                        # Happens during reconnect on some ports of umqtt
-                        pass
-                    elif isinstance(e, MQTTException) and (e.value == 4 or e.value == 5):
-                        print("Invalid BLYNK_AUTH_TOKEN")
-                        await asyncio.sleep(15 * 60)
-                    else:
-                        sys.print_exception(e)
-                        await asyncio.sleep(5)
-            else:
-                try:
-                    self._mqtt.check_msg()
+                    self._mqtt.disconnect()
                 except Exception:
-                    self._connected = False
-                    try:
-                        self.on_disconnected()
-                    except Exception as cb_e:
-                        sys.print_exception(cb_e)
+                    pass
 
-    def publish(self, topic: bytes, payload: str | bytes, retain: bool = False, qos: int = 0):
-        self._mqtt.publish(topic, payload if isinstance(payload, (bytes, bytearray)) else str(payload), retain, qos)
+                gc.collect()
 
-    def subscribe(self, topic: bytes, qos: int = 0):
-        self._mqtt.subscribe(topic, qos)
+                try:
+                    rc = self._mqtt.connect(self.broker, self._port, self.keepalive)
+                    if rc != 0 or (not self._mqtt.is_connected()):
+                        raise OSError(rc if rc else 130)
+                    self._after_connect()
+                except Exception as e:
+                    print("[MQTT ERROR] connect failed:", e)
+                    await asyncio.sleep(5)
+                    continue
 
-    def check_msg(self):
-        self._mqtt.check_msg()
+            try:
+                rc = self._mqtt.loop(0.2, 10)
+                if rc != 0:
+                    raise OSError(rc)
+            except Exception as e:
+                print("[MQTT ERROR] loop failed:", e)
+                try:
+                    self.on_disconnected()
+                except Exception:
+                    pass
+                await asyncio.sleep(1)
 
-    def disconnect(self):
+    def publish(self, topic: str | bytes, payload: str | bytes, retain: bool = False, qos: int = 0):
+        t = topic.decode() if isinstance(topic, (bytes, bytearray)) else str(topic)
+        p = payload if isinstance(payload, (bytes, bytearray)) else str(payload)
+
+        if self._mqtt.is_connected():
+            try:
+                self._mqtt.publish(t, p, qos, retain)
+                return
+            except Exception:
+                pass
+
+        self._pending_pubs.append((t, p, retain, qos))
+        if len(self._pending_pubs) > 30:
+            self._pending_pubs.pop(0)
+
+    def subscribe(self, topic: str | bytes, qos: int = 0):
+        t = topic.decode() if isinstance(topic, (bytes, bytearray)) else str(topic)
+
+        if self._mqtt.is_connected():
+            try:
+                self._mqtt.subscribe(t, qos)
+                return
+            except Exception:
+                pass
+
+        self._pending_subs.append((t, qos))
+        if len(self._pending_subs) > 30:
+            self._pending_subs.pop(0)
+
+    def _after_connect(self):
         try:
-            self._mqtt.disconnect()
+            self._mqtt.subscribe("downlink/#", 0)
         except Exception:
             pass
-        self._connected = False
-
-    # ---------- Internals ----------
-
-    async def _mqtt_connect(self):
-        self.disconnect()
-        gc.collect()
-        print("Connecting to MQTT broker...")
-        self._mqtt.connect()
-        self._mqtt.subscribe("downlink/#")
-        print("Connected to Blynk.Cloud", "[secure]" if self._ssl_ctx else "[insecure]")
 
         info = {
             "type": self.template_id,
@@ -129,64 +246,57 @@ class BlynkDevice:
             "ver": self.firmware_version,
             "rxbuff": 1024,
         }
-        self._mqtt.publish("info/mcu", json.dumps(info))
-        self.connection_count += 1
+        try:
+            self._mqtt.publish("info/mcu", json.dumps(info), 0, False)
+        except Exception:
+            pass
+
+        for t, q in self._pending_subs:
+            try:
+                self._mqtt.subscribe(t, q)
+            except Exception:
+                pass
+        self._pending_subs.clear()
+
+        for t, p, r, q in self._pending_pubs:
+            try:
+                self._mqtt.publish(t, p, q, r)
+            except Exception:
+                pass
+        self._pending_pubs.clear()
+
         try:
             self.on_connected()
-        except Exception as cb_e:
-            sys.print_exception(cb_e)
-
-    def _on_message(self, topic, payload, ret, dup):
-        topic = topic.decode("utf-8")
-        payload = payload.decode("utf-8")
-        print("msg")
-
-        if topic == "downlink/redirect":
-            _, host, port, _ = self._parse_url(payload)
-            if host:
-                self._mqtt.server = host
-            if port:
-                self._mqtt.port = port
-            print("Redirecting...")
-            self.disconnect()
-        elif topic == "downlink/reboot":
-            print("Rebooting...")
-            machine.reset()
-        elif topic == "downlink/ping":
-            # umqtt handles QOS1 ping response
+        except Exception:
             pass
-        else:
-            try:
-                self.user_on_message(topic, payload, ret, dup)
-            except Exception as cb_e:
-                sys.print_exception(cb_e)
 
-    @staticmethod
-    def _parse_url(url: str):
-        # Returns (scheme, host, port, path)
-        scheme = None
-        host = None
-        port = None
-        path = ""
+    def _on_message(self, client, userdata, msg):
         try:
-            scheme, rest = url.split("://", 1)
-        except ValueError:
-            rest = url
+            topic = msg.topic
+            payload = msg.payload
+        except Exception:
+            return
+
+        tb = topic if isinstance(topic, (bytes, bytearray)) else str(topic).encode()
+        pb = payload if isinstance(payload, (bytes, bytearray)) else str(payload).encode()
+        retained = bool(getattr(msg, "retain", False))
+        dup = bool(getattr(msg, "dup", False))
+
         try:
-            netloc, path = rest.split("/", 1)
-        except ValueError:
-            netloc = rest
-        if ":" in netloc:
-            host, p = netloc.split(":", 1)
-            try:
-                port = int(p)
-            except Exception:
-                port = None
-        else:
-            host = netloc
-        if port is None:
-            port = 443 if (scheme and scheme.lower().startswith("ssl")) else 1883
-        return scheme, host, port, path
+            ts = tb.decode()
+        except Exception:
+            ts = ""
+
+        if ts == "downlink/reboot":
+            machine.reset()
+            return
+        if ts == "downlink/ping":
+            return
+
+        try:
+            self.user_on_message(tb, pb, retained, dup)
+        except Exception:
+            pass
 
     @staticmethod
     def _time2str(t):
@@ -196,17 +306,16 @@ class BlynkDevice:
 
     @classmethod
     def _update_ntp_time(cls) -> bool:
-        Jan24 = 756_864_000 if (utime.gmtime(0)[0] == 2000) else 1_704_067_200
-        if utime.time() > Jan24:
+        Jan24 = 756_864_000 if (time.gmtime(0)[0] == 2000) else 1_704_067_200
+        if time.time() > Jan24:
             return True
-        print("Getting NTP utime...")
-        import ntptime
         try:
+            import ntptime
             ntptime.timeout = 5
             ntptime.settime()
-            if utime.time() > Jan24:
-                print("UTC utime:", cls._time2str(utime.gmtime()))
+            if time.time() > Jan24:
+                print("UTC Time:", cls._time2str(time.gmtime()))
                 return True
-        except Exception as e:
-            print("NTP failed:", e)
+        except Exception:
+            pass
         return False
