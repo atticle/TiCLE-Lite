@@ -17,7 +17,7 @@ description: 'Use when writing, editing, or reviewing Korean lecture/textbook ma
 - 목표: 문제해결 중심 피지컬 컴퓨팅 핵심 기술 + 컴퓨팅 사고력 향상
 - 접근: 작은 흥미로운 문제 → 하나씩 해결 → 종합 예제로 점진적 심화. 프로그래밍 문법·패턴은 문제 해결 과정에서 자연스럽게 익힌다.
 - 핵심: 도메인 중심 문제 제시 — "이 기술이 왜 필요한가"를 구체적 상황으로 먼저 제시하고 기술은 그 해결책으로 등장한다.
-- 참조 기준: [Part1. Environment/2. 파이썬 핵심 개념.md](../../../Part1.%20Environment/2.%20파이썬%20핵심%20개념.md) 가 이 목표에 부합하는 완성 예시다.
+- 참조 기준: [Part2. Peripheral/3. TiCLE Lite 기본 제어 -GPIO·ADC·PWM.md](../../../Part2.%20Peripheral/3.%20TiCLE%20Lite%20기본%20제어%20-GPIO%C2%B7ADC%C2%B7PWM.md) 가 이 목표에 부합하는 완성 예시다.
 
 ## 섹션 구조 (반드시 준수)
 
