@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="190" viewBox="0 0 520 190">
+  <rect width="520" height="190" rx="12" fill="#fff9e8"/>
+  <text x="24" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#5c4918">SWI: one timed data line</text>
+  <rect x="25" y="70" width="85" height="58" rx="8" fill="#ffffff" stroke="#c89a2c" stroke-width="3"/><text x="67" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#5c4918">Controller</text>
+  <line x1="110" y1="99" x2="410" y2="99" stroke="#d17a2d" stroke-width="5"/>
+  <polygon points="175,99 190,89 190,109" fill="#d17a2d"/><polygon points="275,99 290,89 290,109" fill="#d17a2d"/><polygon points="375,99 390,89 390,109" fill="#d17a2d"/>
+  <rect x="410" y="70" width="85" height="58" rx="8" fill="#ffffff" stroke="#c89a2c" stroke-width="3"/><text x="452" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#5c4918">LED chain</text>
+  <text x="260" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#8a5a1d">DIN to DOUT</text>
+  <text x="260" y="153" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#8a5a1d">Timed pulses: 0 and 1</text>
+</svg>

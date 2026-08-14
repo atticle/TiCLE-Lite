@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="500"
+   height="260"
+   version="1.1"
+   id="svg14"
+   sodipodi:docname="imu_sensor_frame.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview14"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.3280131"
+     inkscape:cx="266.5363"
+     inkscape:cy="106.95816"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg14" />
+  <defs
+     id="defs2">
+    <rect
+       x="31.357212"
+       y="239.68937"
+       width="53.693856"
+       height="31.786763"
+       id="rect15" />
+    <marker
+       id="arrowX"
+       markerWidth="8"
+       markerHeight="6"
+       refX="7"
+       refY="3"
+       orient="auto">
+      <polygon
+         points="0 0, 8 3, 0 6"
+         fill="#c62828"
+         id="polygon1" />
+    </marker>
+    <marker
+       id="arrowY"
+       markerWidth="8"
+       markerHeight="6"
+       refX="7"
+       refY="3"
+       orient="auto">
+      <polygon
+         points="0 0, 8 3, 0 6"
+         fill="#2e7d32"
+         id="polygon2" />
+    </marker>
+  </defs>
+  <!-- Background -->
+  <rect
+     width="500"
+     height="260"
+     fill="#f8f9fa"
+     rx="8"
+     stroke="#ddd"
+     stroke-width="1"
+     id="rect2" />
+  <!-- Title -->
+  <text
+     x="250"
+     y="20"
+     text-anchor="middle"
+     font-family="Arial, sans-serif"
+     font-size="13px"
+     font-weight="bold"
+     fill="#333333"
+     id="text2">MPU-6050 Sensor Frame</text>
+  <text
+     x="250"
+     y="44"
+     text-anchor="middle"
+     font-family="Arial, sans-serif"
+     font-size="10px"
+     fill="#888888"
+     id="text3">Top View · Standard Horizontal Placement</text>
+  <!-- PCB background -->
+  <rect
+     x="175"
+     y="112"
+     width="150"
+     height="116"
+     rx="5"
+     fill="#1b5e20"
+     opacity="0.08"
+     id="rect3" />
+  <!-- Chip outer body -->
+  <rect
+     x="185"
+     y="120"
+     width="130"
+     height="100"
+     rx="5"
+     fill="#78909c"
+     stroke="#455a64"
+     stroke-width="2"
+     id="rect4" />
+  <!-- Chip inner die surface -->
+  <rect
+     x="194"
+     y="128"
+     width="112"
+     height="84"
+     rx="3"
+     fill="#b0bec5"
+     id="rect5" />
+  <!-- Pin 1 corner marker -->
+  <circle
+     cx="201"
+     cy="135"
+     r="3.5"
+     fill="#37474f"
+     id="circle5" />
+  <!-- Chip label -->
+  <text
+     x="250"
+     y="167"
+     text-anchor="middle"
+     font-family="Arial, sans-serif"
+     font-size="12px"
+     font-weight="bold"
+     fill="#263238"
+     id="text5">MPU-6050</text>
+  <text
+     x="250"
+     y="182"
+     text-anchor="middle"
+     font-family="Arial, sans-serif"
+     font-size="9px"
+     fill="#546e7a"
+     id="text6">InvenSense / TDK</text>
+  <!-- === +X AXIS (right) · Red === -->
+  <line
+     x1="315"
+     y1="170"
+     x2="415"
+     y2="170"
+     stroke="#c62828"
+     stroke-width="2.5"
+     marker-end="url(#arrowX)"
+     id="line6" />
+  <text
+     x="398"
+     y="154"
+     font-family="Arial, sans-serif"
+     font-size="13px"
+     font-weight="bold"
+     fill="#c62828"
+     id="text7">+X</text>
+  <text
+     x="371"
+     y="188"
+     text-anchor="middle"
+     font-family="Arial, sans-serif"
+     font-size="10px"
+     fill="#c62828"
+     id="text8">Right</text>
+  <!-- === +Y AXIS (forward, upward in top view) · Green === -->
+  <line
+     x1="250"
+     y1="120"
+     x2="250"
+     y2="54"
+     stroke="#2e7d32"
+     stroke-width="2.5"
+     marker-end="url(#arrowY)"
+     id="line8" />
+  <text
+     x="260"
+     y="66"
+     font-family="Arial, sans-serif"
+     font-size="13px"
+     font-weight="bold"
+     fill="#2e7d32"
+     id="text9">+Y</text>
+  <text
+     x="263"
+     y="87"
+     font-family="Arial, sans-serif"
+     font-size="10px"
+     fill="#2e7d32"
+     id="text10">Forward</text>
+  <!-- === +Z AXIS (out of page toward viewer) · Blue === -->
+  <circle
+     cx="107"
+     cy="170"
+     r="21"
+     fill="#e3f2fd"
+     stroke="#1565c0"
+     stroke-width="2.5"
+     id="circle10" />
+  <circle
+     cx="107"
+     cy="170"
+     r="5.5"
+     fill="#1565c0"
+     id="circle11" />
+  <!-- Z axis label -->
+  <text
+     x="107"
+     y="141"
+     text-anchor="middle"
+     font-family="Arial, sans-serif"
+     font-size="13px"
+     font-weight="bold"
+     fill="#1565c0"
+     id="text11">+Z</text>
+  <text
+     x="107"
+     y="204"
+     text-anchor="middle"
+     font-family="Arial, sans-serif"
+     font-size="10px"
+     fill="#1565c0"
+     id="text12">Up</text>
+  <!-- Dashed guide line to chip -->
+  <line
+     x1="128"
+     y1="170"
+     x2="185"
+     y2="170"
+     stroke="#1565c0"
+     stroke-width="1.5"
+     stroke-dasharray="5, 4"
+     opacity="0.55"
+     id="line12" />
+  <!-- Z symbol legend -->
+  <circle
+     cx="44"
+     cy="234"
+     r="8"
+     fill="none"
+     stroke="#1565c0"
+     stroke-width="1.5"
+     id="circle12" />
+  <circle
+     cx="44"
+     cy="234"
+     r="2.5"
+     fill="#1565c0"
+     id="circle13" />
+  <text
+     x="94.752441"
+     y="232"
+     font-family="Arial, sans-serif"
+     font-size="10px"
+     fill="#555555"
+     id="text13"
+     style="text-align:center;text-anchor:middle"><tspan
+       sodipodi:role="line"
+       id="tspan14"
+       x="94.752441"
+       y="232">Out of page</tspan><tspan
+       sodipodi:role="line"
+       id="tspan15"
+       x="94.752441"
+       y="244.5">(toward viewer)</tspan></text>
+  <!-- Bottom note -->
+  <text
+     x="250"
+     y="248"
+     text-anchor="middle"
+     font-family="Arial, sans-serif"
+     font-size="10px"
+     fill="#aaaaaa"
+     id="text14">Right-handed Coordinate System</text>
+  <text
+     xml:space="preserve"
+     id="text15"
+     style="font-weight:bold;font-size:22.6667px;font-family:Arial, Helvetica, sans-serif;-inkscape-font-specification:'Arial, Helvetica, sans-serif, Bold';text-align:center;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect15);display:inline;fill:#800000" />
+</svg>

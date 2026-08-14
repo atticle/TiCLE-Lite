@@ -1,0 +1,43 @@
+<svg width="700" height="170" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#555"/>
+    </marker>
+  </defs>
+
+  <!-- ── Widget box ── -->
+  <rect x="10" y="48" width="148" height="64" rx="8" fill="#3B82F6" stroke="#1D4ED8" stroke-width="1.5"/>
+  <text x="84" y="72" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Widget</text>
+  <text x="84" y="95" text-anchor="middle" fill="#BFDBFE" font-size="11">QPushButton</text>
+
+  <!-- ── event arrow ── -->
+  <line x1="158" y1="80" x2="208" y2="80" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="183" y="72" text-anchor="middle" fill="#555" font-size="10">event</text>
+
+  <!-- ── Signal box ── -->
+  <rect x="208" y="48" width="132" height="64" rx="8" fill="#F59E0B" stroke="#B45309" stroke-width="1.5"/>
+  <text x="274" y="72" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Signal</text>
+  <text x="274" y="95" text-anchor="middle" fill="#FEF3C7" font-size="11">clicked</text>
+
+  <!-- ── .connect() label ── -->
+  <text x="400" y="28" text-anchor="middle" fill="#444" font-size="11" font-style="italic">signal.connect(slot)</text>
+
+  <!-- ── arrow signal → slot1 ── -->
+  <line x1="340" y1="68" x2="448" y2="58" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ── arrow signal → slot2 ── -->
+  <line x1="340" y1="92" x2="448" y2="112" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ── Slot 1 ── -->
+  <rect x="448" y="36" width="222" height="44" rx="8" fill="#22C55E" stroke="#15803D" stroke-width="1.5"/>
+  <text x="559" y="54" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Slot</text>
+  <text x="559" y="72" text-anchor="middle" fill="#DCFCE7" font-size="11">on_login()</text>
+
+  <!-- ── Slot 2 ── -->
+  <rect x="448" y="90" width="222" height="44" rx="8" fill="#22C55E" stroke="#15803D" stroke-width="1.5"/>
+  <text x="559" y="108" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Slot</text>
+  <text x="559" y="126" text-anchor="middle" fill="#DCFCE7" font-size="11">bar.setValue()</text>
+
+  <!-- ── note ── -->
+  <text x="350" y="158" text-anchor="middle" fill="#888" font-size="10">One signal can connect to multiple slots</text>
+</svg>

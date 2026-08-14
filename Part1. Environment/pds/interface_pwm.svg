@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="190" viewBox="0 0 520 190">
+  <rect width="520" height="190" rx="12" fill="#fff5e9"/>
+  <text x="24" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#51331b">PWM: control by duty cycle</text>
+  <text x="35" y="66" font-family="Arial, sans-serif" font-size="15" fill="#6f4b2c">Low duty</text>
+  <path d="M35 100 H75 V70 H115 V100 H155 V70 H195 V100" fill="none" stroke="#d97724" stroke-width="5"/>
+  <text x="94" y="137" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#6f4b2c">25%</text>
+  <text x="270" y="66" font-family="Arial, sans-serif" font-size="15" fill="#6f4b2c">High duty</text>
+  <path d="M270 100 H350 V70 H390 V100 H470 V70 H510" fill="none" stroke="#d97724" stroke-width="5"/>
+  <text x="390" y="137" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#6f4b2c">75%</text>
+  <text x="260" y="174" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#8c4b13">Fast switching changes average power</text>
+</svg>

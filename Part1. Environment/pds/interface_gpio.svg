@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="190" viewBox="0 0 520 190">
+  <rect width="520" height="190" rx="12" fill="#eef5ff"/>
+  <text x="24" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#17324d">GPIO: digital input and output</text>
+  <line x1="70" y1="95" x2="185" y2="95" stroke="#2474c6" stroke-width="4"/>
+  <circle cx="70" cy="95" r="12" fill="#2474c6"/>
+  <rect x="185" y="65" width="105" height="60" rx="8" fill="#ffffff" stroke="#2474c6" stroke-width="3"/>
+  <text x="237" y="91" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#17324d">GPIO pin</text>
+  <text x="237" y="111" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#486276">0 or 1</text>
+  <line x1="290" y1="80" x2="430" y2="55" stroke="#e27932" stroke-width="4"/>
+  <line x1="290" y1="110" x2="430" y2="135" stroke="#35a36b" stroke-width="4"/>
+  <rect x="430" y="35" width="68" height="40" rx="7" fill="#fff0e4" stroke="#e27932" stroke-width="2"/>
+  <text x="464" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#8c431c">Input</text>
+  <rect x="430" y="115" width="68" height="40" rx="7" fill="#e8f8ef" stroke="#35a36b" stroke-width="2"/>
+  <text x="464" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#216b45">Output</text>
+</svg>

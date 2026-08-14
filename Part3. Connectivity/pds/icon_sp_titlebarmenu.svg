@@ -1,0 +1,12 @@
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <!-- 3x3 grid of dots representing a menu/titlebar button -->
+  <rect x="3"  y="3"  width="5" height="5" rx="1" fill="#5B8CDB"/>
+  <rect x="10" y="3"  width="5" height="5" rx="1" fill="#5B8CDB"/>
+  <rect x="17" y="3"  width="5" height="5" rx="1" fill="#5B8CDB"/>
+  <rect x="3"  y="10" width="5" height="5" rx="1" fill="#5B8CDB"/>
+  <rect x="10" y="10" width="5" height="5" rx="1" fill="#5B8CDB"/>
+  <rect x="17" y="10" width="5" height="5" rx="1" fill="#5B8CDB"/>
+  <rect x="3"  y="17" width="5" height="5" rx="1" fill="#5B8CDB"/>
+  <rect x="10" y="17" width="5" height="5" rx="1" fill="#5B8CDB"/>
+  <rect x="17" y="17" width="5" height="5" rx="1" fill="#5B8CDB"/>
+</svg>
