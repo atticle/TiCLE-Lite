@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="255" viewBox="0 0 780 255">
+
+  <!-- background -->
+  <rect width="780" height="255" fill="#fafafa" rx="4" stroke="#e0e0e0" stroke-width="1"/>
+
+  <!-- title -->
+  <text x="390" y="21" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2c3e50">
+    I2C Communication Protocol
+  </text>
+
+  <!-- ===== SECTION BLOCKS y=32, h=22 ===== -->
+
+  <!-- START (x=60-96) -->
+  <rect x="60" y="32" width="36" height="22" rx="3" fill="#fadbd8" stroke="#e74c3c" stroke-width="1"/>
+  <text x="78" y="47" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="9" fill="#c0392b">START</text>
+
+  <!-- ADDRESS (x=96-292, 7 x 28px) -->
+  <rect x="96" y="32" width="196" height="22" rx="3" fill="#d6eaf8" stroke="#2980b9" stroke-width="1"/>
+  <text x="194" y="47" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="10" fill="#2980b9">ADDRESS (7-bit)</text>
+
+  <!-- R/W (x=292-320) -->
+  <rect x="292" y="32" width="28" height="22" rx="3" fill="#fef9e7" stroke="#e67e22" stroke-width="1"/>
+  <text x="306" y="47" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="8" fill="#d35400">R/W</text>
+
+  <!-- ACK1 (x=320-348) -->
+  <rect x="320" y="32" width="28" height="22" rx="3" fill="#d5f5e3" stroke="#1e8449" stroke-width="1"/>
+  <text x="334" y="47" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="9" fill="#1e8449">ACK</text>
+
+  <!-- DATA (x=348-572, 8 x 28px) -->
+  <rect x="348" y="32" width="224" height="22" rx="3" fill="#d6eaf8" stroke="#2980b9" stroke-width="1"/>
+  <text x="460" y="47" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="10" fill="#2980b9">DATA (8-bit)</text>
+
+  <!-- ACK2 (x=572-600) -->
+  <rect x="572" y="32" width="28" height="22" rx="3" fill="#d5f5e3" stroke="#1e8449" stroke-width="1"/>
+  <text x="586" y="47" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="9" fill="#1e8449">ACK</text>
+
+  <!-- STOP (x=600-636) -->
+  <rect x="600" y="32" width="36" height="22" rx="3" fill="#fadbd8" stroke="#e74c3c" stroke-width="1"/>
+  <text x="618" y="47" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="9" fill="#c0392b">STOP</text>
+
+  <!-- ===== TRACK LABELS ===== -->
+  <text x="50" y="91" text-anchor="end"
+        font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#e67e22">SCL</text>
+  <text x="50" y="161" text-anchor="end"
+        font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#8e44ad">SDA</text>
+
+  <!-- H / L guide labels -->
+  <text x="56" y="81" font-family="Arial, sans-serif" font-size="8" fill="#ccc">H</text>
+  <text x="56" y="101" font-family="Arial, sans-serif" font-size="8" fill="#ccc">L</text>
+  <text x="56" y="151" font-family="Arial, sans-serif" font-size="8" fill="#ccc">H</text>
+  <text x="56" y="171" font-family="Arial, sans-serif" font-size="8" fill="#ccc">L</text>
+
+  <!-- ===== SCL WAVEFORM =====
+       idle + START region: SCL stays HIGH (x=30-96)
+       18 clock cycles (7 addr + 1 R/W + 1 ACK1 + 8 data + 1 ACK2): x=96-600
+         each cycle: fall at x_s, low for 14px, rise at x_s+14, high for 14px
+       STOP + idle: SCL stays HIGH (x=600-720)
+  -->
+  <polyline fill="none" stroke="#e67e22" stroke-width="2" stroke-linejoin="miter" points="
+    30,78  96,78
+    96,98  110,98  110,78  124,78
+    124,98 138,98  138,78  152,78
+    152,98 166,98  166,78  180,78
+    180,98 194,98  194,78  208,78
+    208,98 222,98  222,78  236,78
+    236,98 250,98  250,78  264,78
+    264,98 278,98  278,78  292,78
+    292,98 306,98  306,78  320,78
+    320,98 334,98  334,78  348,78
+    348,98 362,98  362,78  376,78
+    376,98 390,98  390,78  404,78
+    404,98 418,98  418,78  432,78
+    432,98 446,98  446,78  460,78
+    460,98 474,98  474,78  488,78
+    488,98 502,98  502,78  516,78
+    516,98 530,98  530,78  544,78
+    544,98 558,98  558,78  572,78
+    572,98 586,98  586,78  720,78
+  "/>
+
+  <!-- ===== SDA WAVEFORM =====
+       Example: addr 0x27 = 0b0100111 -> A6=0,A5=1,A4=0,A3=0,A2=1,A1=1,A0=1
+       R/W = 0 (Write)
+       ACK1: target pulls low
+       Data 0xAB = 0b10101011 -> D7=1,D6=0,D5=1,D4=0,D3=1,D2=0,D1=1,D0=1
+       ACK2: target pulls low
+       SDA changes allowed only during SCL low (first half of each clock period)
+  -->
+  <polyline fill="none" stroke="#8e44ad" stroke-width="2" stroke-linejoin="miter" points="
+    30,148  78,148  78,168
+    96,168  124,168  124,148  152,148
+    152,168  180,168  208,168  208,148  236,148  264,148  292,148
+    292,168  320,168  348,168
+    348,148  376,148
+    376,168  404,168  404,148  432,148
+    432,168  460,168  460,148  488,148
+    488,168  516,168  516,148  544,148  572,148
+    572,168  600,168  615,168  615,148  720,148
+  "/>
+
+  <!-- ===== ANNOTATIONS ===== -->
+
+  <!-- START condition: SDA falls while SCL is HIGH -->
+  <line x1="78" y1="172" x2="78" y2="190" stroke="#c0392b" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="78" y="202" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#c0392b">SDA falls</text>
+  <text x="78" y="214" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#c0392b">SCL = HIGH</text>
+
+  <!-- STOP condition: SDA rises while SCL is HIGH -->
+  <line x1="615" y1="153" x2="615" y2="190" stroke="#c0392b" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="615" y="202" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#c0392b">SDA rises</text>
+  <text x="615" y="214" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#c0392b">SCL = HIGH</text>
+
+  <!-- R/W label -->
+  <text x="306" y="202" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#d35400">0 = Write</text>
+  <text x="306" y="213" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#d35400">1 = Read</text>
+
+  <!-- ACK1 label -->
+  <text x="334" y="202" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1e8449">target</text>
+  <text x="334" y="213" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1e8449">pulls low</text>
+
+  <!-- ACK2 label -->
+  <text x="586" y="202" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1e8449">target</text>
+  <text x="586" y="213" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#1e8449">pulls low</text>
+
+  <!-- bottom example note -->
+  <text x="390" y="242" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="10" fill="#888">
+    Example: Write to addr 0x27 (0100111b), data 0xAB (10101011b) &#8212; each clock = 28 px
+  </text>
+
+</svg>

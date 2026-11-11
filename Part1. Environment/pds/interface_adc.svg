@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="190" viewBox="0 0 520 190">
+  <rect width="520" height="190" rx="12" fill="#eefaf2"/>
+  <text x="24" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#214b34">ADC: voltage becomes a number</text>
+  <path d="M35 111 C85 78 120 135 170 95 S255 62 300 92" fill="none" stroke="#2e9b67" stroke-width="4"/>
+  <text x="36" y="145" font-family="Arial, sans-serif" font-size="14" fill="#35664b">Analog voltage</text>
+  <polygon points="325,82 360,82 360,67 395,95 360,123 360,108 325,108" fill="#e08b35"/>
+  <text x="342" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#8a551f">Sample</text>
+  <rect x="410" y="65" width="85" height="60" rx="8" fill="#ffffff" stroke="#2e9b67" stroke-width="3"/>
+  <text x="452" y="91" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#214b34">Digital</text>
+  <text x="452" y="111" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#214b34">value</text>
+</svg>

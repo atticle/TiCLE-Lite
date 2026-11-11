@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1100"
+   height="560"
+   viewBox="0 0 1100 560"
+   role="img"
+   aria-label="Servo pulse width to angle mapping at 50 Hz"
+   version="1.1"
+   id="svg16"
+   sodipodi:docname="servo_pulsewidth_angle_map.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs16" />
+  <sodipodi:namedview
+     id="namedview16"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.76428571"
+     inkscape:cx="767.38318"
+     inkscape:cy="306.16822"
+     inkscape:window-width="1904"
+     inkscape:window-height="973"
+     inkscape:window-x="3847"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg16" />
+  <rect
+     x="0"
+     y="0"
+     width="1100"
+     height="560"
+     fill="#ffffff"
+     id="rect1" />
+  <text
+     x="34"
+     y="48"
+     font-family="Arial, Helvetica, sans-serif"
+     font-size="32"
+     font-weight="700"
+     fill="#111111"
+     id="text1">Servo Angle Mapping in One 20 ms PWM Frame (50 Hz)</text>
+  <text
+     x="34"
+     y="84"
+     font-family="Arial, Helvetica, sans-serif"
+     font-size="22"
+     fill="#222222"
+     id="text2">Pulse width (HIGH time) sets target angle of the servo shaft.</text>
+  <rect
+     x="34"
+     y="110"
+     width="1032"
+     height="420"
+     rx="12"
+     fill="#ffffff"
+     stroke="#cdd6df"
+     stroke-width="2"
+     id="rect2" />
+  <!-- Scale -->
+  <line
+     x1="170.56075"
+     y1="165"
+     x2="929.43927"
+     y2="165"
+     stroke="#5b6770"
+     stroke-width="1.90098"
+     id="line2" />
+  <line
+     x1="130"
+     y1="156"
+     x2="130"
+     y2="174"
+     stroke="#5b6770"
+     stroke-width="2"
+     id="line3" />
+  <line
+     x1="530"
+     y1="156"
+     x2="530"
+     y2="174"
+     stroke="#5b6770"
+     stroke-width="2"
+     id="line4" />
+  <line
+     x1="932"
+     y1="156"
+     x2="932"
+     y2="174"
+     stroke="#5b6770"
+     stroke-width="2"
+     id="line5" />
+  <text
+     x="110"
+     y="150"
+     font-family="Arial, Helvetica, sans-serif"
+     font-size="16"
+     fill="#333333"
+     id="text5">0 ms</text>
+  <text
+     x="516"
+     y="150"
+     font-family="Arial, Helvetica, sans-serif"
+     font-size="16px"
+     fill="#333333"
+     id="text6">10 ms</text>
+  <text
+     x="915"
+     y="150"
+     font-family="Arial, Helvetica, sans-serif"
+     font-size="16px"
+     fill="#333333"
+     id="text7">20 ms</text>
+  <!-- 0 deg -->
+  <text
+     x="60"
+     y="222"
+     font-family="Arial, Helvetica, sans-serif"
+     font-size="22"
+     font-weight="700"
+     fill="#0a4f8a"
+     id="text8">0 deg</text>
+  <rect
+     x="130"
+     y="190"
+     width="21"
+     height="46"
+     fill="#1f77b4"
+     id="rect8" />
+  <rect
+     x="150.10675"
+     y="189.9894"
+     width="784.57678"
+     height="46.003067"
+     fill="#f5f7fa"
+     stroke="#c3ccd6"
+     id="rect9"
+     style="stroke-width:0.978792" />
+  <text
+     x="948"
+     y="220"
+     font-family="Arial, Helvetica, sans-serif"
+     font-size="18px"
+     fill="#1f77b4"
+     id="text9">Ton = 0.5 ms</text>
+  <!-- 90 deg -->
+  <text
+     x="52"
+     y="312"
+     font-family="Arial, Helvetica, sans-serif"
+     font-size="22"
+     font-weight="700"
+     fill="#8a4b00"
+     id="text10">90 deg</text>
+  <rect
+     x="130"
+     y="280"
+     width="63"
+     height="46"
+     fill="#ff7f0e"
+     id="rect10" />
+  <rect
+     x="190.34146"
+     y="279.99539"
+     width="744.34204"
+     height="46.003067"
+     fill="#f5f7fa"
+     stroke="#c3ccd6"
+     id="rect11"
+     style="stroke-width:0.978792" />
+  <text
+     x="948"
+     y="310"
+     font-family="Arial, Helvetica, sans-serif"
+     font-size="18px"
+     fill="#8a4b00"
+     id="text11">Ton = 1.5 ms</text>
+  <!-- 180 deg -->
+  <text
+     x="43"
+     y="402"
+     font-family="Arial, Helvetica, sans-serif"
+     font-size="22"
+     font-weight="700"
+     fill="#2a7d2e"
+     id="text12">180 deg</text>
+  <rect
+     x="130"
+     y="370"
+     width="105"
+     height="46"
+     fill="#2ca02c"
+     id="rect12" />
+  <rect
+     x="230.57616"
+     y="370.0014"
+     width="704.10736"
+     height="46.003067"
+     fill="#f5f7fa"
+     stroke="#c3ccd6"
+     id="rect13"
+     style="stroke-width:0.978792" />
+  <text
+     x="948"
+     y="400"
+     font-family="Arial, Helvetica, sans-serif"
+     font-size="18px"
+     fill="#2a7d2e"
+     id="text13">Ton = 2.5 ms</text>
+  <!-- Formula box -->
+  <rect
+     x="129.9894"
+     y="446.00647"
+     width="804.69409"
+     height="62.004135"
+     rx="7.6637535"
+     fill="#f8fbff"
+     stroke="#c8d9ea"
+     id="rect14"
+     style="stroke-width:0.978792" />
+  <text
+     x="152"
+     y="484"
+     font-family="Arial, Helvetica, sans-serif"
+     font-size="22"
+     fill="#133a5e"
+     id="text14">Duty (%) = (Ton / 20 ms) x 100  -&gt;  2.5%, 7.5%, 12.5%</text>
+  <!-- Legend -->
+  <rect
+     x="950"
+     y="448"
+     width="18"
+     height="18"
+     fill="#3d6fa1"
+     id="rect15" />
+  <text
+     x="975"
+     y="462"
+     font-family="Arial, Helvetica, sans-serif"
+     font-size="14px"
+     fill="#222222"
+     id="text15">HIGH</text>
+  <rect
+     x="950"
+     y="477"
+     width="18"
+     height="18"
+     fill="#f5f7fa"
+     stroke="#9da9b5"
+     id="rect16" />
+  <text
+     x="975"
+     y="491"
+     font-family="Arial, Helvetica, sans-serif"
+     font-size="14px"
+     fill="#222222"
+     id="text16">LOW</text>
+</svg>

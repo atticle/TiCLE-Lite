@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="640"
+   height="220"
+   font-family="'Courier New',Courier,monospace"
+   version="1.1"
+   id="svg20"
+   sodipodi:docname="sr04_timing.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs20" />
+  <sodipodi:namedview
+     id="namedview20"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="2.19375"
+     inkscape:cx="320"
+     inkscape:cy="103.24786"
+     inkscape:window-width="1920"
+     inkscape:window-height="982"
+     inkscape:window-x="3832"
+     inkscape:window-y="16"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg20" />
+  <!-- Background -->
+  <rect
+     width="640"
+     height="220"
+     fill="white"
+     rx="6"
+     stroke="#d0d0d0"
+     stroke-width="1"
+     id="rect1" />
+  <!-- Title -->
+  <text
+     x="320"
+     y="20"
+     fill="#1a1a2e"
+     text-anchor="middle"
+     font-size="13px"
+     font-weight="bold"
+     id="text1">Ultrasonic Sensor GPIO Timing</text>
+  <!-- Row labels -->
+  <text
+     x="87"
+     y="57"
+     fill="#1a7a3a"
+     text-anchor="end"
+     font-size="11"
+     id="text2">Trigger</text>
+  <text
+     x="87"
+     y="137"
+     fill="#1565c0"
+     text-anchor="end"
+     font-size="11"
+     id="text3">Echo</text>
+  <!-- HIGH / LOW level labels -->
+  <text
+     x="87"
+     y="44"
+     fill="#999"
+     text-anchor="end"
+     font-size="9"
+     id="text4">HIGH</text>
+  <text
+     x="87"
+     y="76"
+     fill="#999"
+     text-anchor="end"
+     font-size="9"
+     id="text5">LOW</text>
+  <text
+     x="87"
+     y="122"
+     fill="#999"
+     text-anchor="end"
+     font-size="9"
+     id="text6">HIGH</text>
+  <text
+     x="87"
+     y="155"
+     fill="#999"
+     text-anchor="end"
+     font-size="9"
+     id="text7">LOW</text>
+  <!-- Reference grid rails (dashed) -->
+  <line
+     x1="90"
+     y1="40"
+     x2="620"
+     y2="40"
+     stroke="#f0f0f0"
+     stroke-width="1"
+     stroke-dasharray="2,5"
+     id="line7" />
+  <line
+     x1="90"
+     y1="73"
+     x2="620"
+     y2="73"
+     stroke="#f0f0f0"
+     stroke-width="1"
+     stroke-dasharray="2,5"
+     id="line8" />
+  <line
+     x1="90"
+     y1="118"
+     x2="620"
+     y2="118"
+     stroke="#f0f0f0"
+     stroke-width="1"
+     stroke-dasharray="2,5"
+     id="line9" />
+  <line
+     x1="90"
+     y1="152"
+     x2="620"
+     y2="152"
+     stroke="#f0f0f0"
+     stroke-width="1"
+     stroke-dasharray="2,5"
+     id="line10" />
+  <!-- Row separator -->
+  <line
+     x1="90"
+     y1="95"
+     x2="620"
+     y2="95"
+     stroke="#d0d0d0"
+     stroke-width="1"
+     id="line11" />
+  <!-- Time axis -->
+  <line
+     x1="90"
+     y1="198"
+     x2="616"
+     y2="198"
+     stroke="#888"
+     stroke-width="1.5"
+     id="line12" />
+  <polygon
+     points="616,195 616,201 622,198"
+     fill="#888"
+     id="polygon12" />
+  <text
+     x="627"
+     y="202"
+     fill="#888"
+     font-size="11"
+     id="text12">t</text>
+  <!-- ─── TRIGGER SIGNAL (dark green) ─── -->
+  <!-- LOW 90→130, HIGH pulse 130→175, LOW 175→620 -->
+  <polyline
+     points="90,73 130,73 130,40 175,40 175,73 620,73"
+     stroke="#2e9c4f"
+     stroke-width="2"
+     fill="none"
+     id="polyline12" />
+  <!-- ─── ECHO SIGNAL (dark blue) ─── -->
+  <!-- LOW 90→240, HIGH 240→510, LOW 510→620 -->
+  <!-- gap 175→240 = 65 px provides space for propagation label -->
+  <polyline
+     points="90,152 240,152 240,118 510,118 510,152 620,152"
+     stroke="#1a6fcc"
+     stroke-width="2"
+     fill="none"
+     id="polyline13" />
+  <!-- ─── ANNOTATIONS ─── -->
+  <!-- 10 µs bracket over trigger pulse (130→175) -->
+  <line
+     x1="130"
+     y1="32"
+     x2="175"
+     y2="32"
+     stroke="#c67a00"
+     stroke-width="1.5"
+     id="line13" />
+  <line
+     x1="130"
+     y1="29"
+     x2="130"
+     y2="35"
+     stroke="#c67a00"
+     stroke-width="1.5"
+     id="line14" />
+  <line
+     x1="175"
+     y1="29"
+     x2="175"
+     y2="35"
+     stroke="#c67a00"
+     stroke-width="1.5"
+     id="line15" />
+  <text
+     x="152"
+     y="27"
+     fill="#b85c00"
+     text-anchor="middle"
+     font-size="9"
+     id="text15">10 µs</text>
+  <!-- Propagation delay: two-headed arrow at separator level (175→240) -->
+  <polygon
+     points="178,95 184,92 184,98"
+     fill="#888"
+     id="polygon15" />
+  <polygon
+     points="237,95 231,92 231,98"
+     fill="#888"
+     id="polygon16" />
+  <line
+     x1="183"
+     y1="95"
+     x2="232"
+     y2="95"
+     stroke="#888"
+     stroke-width="1.5"
+     id="line16" />
+  <!-- white pill background ensures legibility -->
+  <text
+     x="207"
+     y="88"
+     fill="#555555"
+     text-anchor="middle"
+     font-size="9px"
+     id="text16">propagation</text>
+  <!-- Echo duration bracket below echo row (240→510) -->
+  <line
+     x1="240"
+     y1="167"
+     x2="510"
+     y2="167"
+     stroke="#c67a00"
+     stroke-width="1.5"
+     id="line17" />
+  <line
+     x1="240"
+     y1="164"
+     x2="240"
+     y2="170"
+     stroke="#c67a00"
+     stroke-width="1.5"
+     id="line18" />
+  <line
+     x1="510"
+     y1="164"
+     x2="510"
+     y2="170"
+     stroke="#c67a00"
+     stroke-width="1.5"
+     id="line19" />
+  <text
+     x="375"
+     y="163"
+     fill="#b85c00"
+     text-anchor="middle"
+     font-size="9"
+     id="text19">Echo duration  (t)</text>
+  <!-- Distance formula -->
+  <text
+     x="320"
+     y="210"
+     fill="#6a1b9a"
+     text-anchor="middle"
+     font-size="10"
+     id="text20">Distance  d = t [µs] / 58   (cm)</text>
+</svg>

@@ -1,0 +1,10 @@
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <!-- shield outline -->
+  <path d="M12 2 L21 6 L21 13 C21 17.5 16.5 21 12 22 C7.5 21 3 17.5 3 13 L3 6 Z"
+        fill="#4A90D9" stroke="#1E5FA0" stroke-width="1"/>
+  <!-- shield highlight -->
+  <path d="M12 4 L19 7.5 L19 13 C19 16.5 15.5 19.5 12 20.5"
+        fill="none" stroke="#A8CFFF" stroke-width="1" opacity="0.6"/>
+  <!-- checkmark -->
+  <polyline points="8,12 11,15 16,9" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

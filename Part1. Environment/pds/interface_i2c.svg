@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="190" viewBox="0 0 520 190">
+  <rect width="520" height="190" rx="12" fill="#f1efff"/>
+  <text x="24" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#302b61">I2C: two shared bus lines</text>
+  <rect x="32" y="70" width="98" height="58" rx="8" fill="#ffffff" stroke="#665bc1" stroke-width="3"/>
+  <text x="81" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#302b61">Master</text>
+  <line x1="130" y1="85" x2="430" y2="85" stroke="#d05a55" stroke-width="4"/>
+  <line x1="130" y1="115" x2="430" y2="115" stroke="#3d8fc2" stroke-width="4"/>
+  <text x="280" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#9b3f3b">SDA: data</text>
+  <text x="280" y="138" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#286483">SCL: clock</text>
+  <rect x="430" y="48" width="70" height="42" rx="7" fill="#ffffff" stroke="#665bc1" stroke-width="2"/>
+  <rect x="430" y="100" width="70" height="42" rx="7" fill="#ffffff" stroke="#665bc1" stroke-width="2"/>
+  <text x="465" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#302b61">Sensor 1</text>
+  <text x="465" y="126" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#302b61">Sensor 2</text>
+</svg>

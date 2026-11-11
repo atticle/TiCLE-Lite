@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="220"
+     font-family="'Courier New',Courier,monospace">
+
+  <!-- Background -->
+  <rect width="640" height="220" fill="white" rx="6" stroke="#d0d0d0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="320" y="20" fill="#1a1a2e" text-anchor="middle" font-size="13" font-weight="bold">Button Debounce Timing</text>
+
+  <!-- Row labels -->
+  <text x="87" y="72" fill="#1a7a3a" text-anchor="end" font-size="11">Raw</text>
+  <text x="87" y="147" fill="#1565c0" text-anchor="end" font-size="11">Debounced</text>
+
+  <!-- HIGH / LOW level labels -->
+  <text x="87" y="59" fill="#999" text-anchor="end" font-size="9">HIGH</text>
+  <text x="87" y="91" fill="#999" text-anchor="end" font-size="9">LOW</text>
+  <text x="87" y="134" fill="#999" text-anchor="end" font-size="9">HIGH</text>
+  <text x="87" y="167" fill="#999" text-anchor="end" font-size="9">LOW</text>
+
+  <!-- Reference grid rails (dashed) -->
+  <line x1="90" y1="55" x2="620" y2="55" stroke="#e8e8e8" stroke-width="1" stroke-dasharray="2,5"/>
+  <line x1="90" y1="88" x2="620" y2="88" stroke="#e8e8e8" stroke-width="1" stroke-dasharray="2,5"/>
+  <line x1="90" y1="130" x2="620" y2="130" stroke="#e8e8e8" stroke-width="1" stroke-dasharray="2,5"/>
+  <line x1="90" y1="163" x2="620" y2="163" stroke="#e8e8e8" stroke-width="1" stroke-dasharray="2,5"/>
+
+  <!-- Row separator -->
+  <line x1="90" y1="108" x2="620" y2="108" stroke="#c8c8c8" stroke-width="1"/>
+
+  <!-- Time axis -->
+  <line x1="90" y1="207" x2="616" y2="207" stroke="#888" stroke-width="1.5"/>
+  <polygon points="616,204 616,210 622,207" fill="#888"/>
+  <text x="627" y="211" fill="#888" font-size="11">t</text>
+
+  <!-- ─── RAW SIGNAL (green) ─── -->
+  <!-- Idle LOW: 90 → 158 -->
+  <polyline points="90,88 158,88" stroke="#2e9c4f" stroke-width="2" fill="none"/>
+  <!-- Press bounce (158→224): initial press + contact oscillations, settles HIGH -->
+  <polyline stroke="#2e9c4f" stroke-width="2" fill="none"
+    points="158,88 158,55 165,55 165,88 172,88 172,55 179,55 179,88
+            186,88 186,55 193,55 193,88 200,88 200,55 207,55 207,88
+            214,88 214,55 224,55"/>
+  <!-- Stable HIGH: 224 → 394 -->
+  <polyline points="224,55 394,55" stroke="#2e9c4f" stroke-width="2" fill="none"/>
+  <!-- Release bounce (394→454): initial release + contact oscillations, settles LOW -->
+  <polyline stroke="#2e9c4f" stroke-width="2" fill="none"
+    points="394,55 394,88 401,88 401,55 408,55 408,88 415,88 415,55
+            422,55 422,88 429,88 429,55 436,55 436,88 454,88"/>
+  <!-- Idle LOW: 454 → 620 -->
+  <polyline points="454,88 620,88" stroke="#2e9c4f" stroke-width="2" fill="none"/>
+
+  <!-- ─── DEBOUNCED SIGNAL (blue) ─── -->
+  <!-- Holds LOW until bounce settles, then cleanly follows stable state -->
+  <polyline points="90,163 224,163 224,130 454,130 454,163 620,163"
+    stroke="#1a6fcc" stroke-width="2.5" fill="none"/>
+
+  <!-- ─── ANNOTATIONS ─── -->
+
+  <!-- Bounce region highlight boxes -->
+  <rect x="157" y="47" width="68" height="48" rx="2"
+        fill="#e53935" fill-opacity="0.07"
+        stroke="#e53935" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="191" y="43" fill="#c62828" text-anchor="middle" font-size="9">Bounce</text>
+
+  <rect x="393" y="47" width="62" height="48" rx="2"
+        fill="#e53935" fill-opacity="0.07"
+        stroke="#e53935" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="424" y="43" fill="#c62828" text-anchor="middle" font-size="9">Bounce</text>
+
+  <!-- Debounce Window brackets (press: 158→224) -->
+  <line x1="158" y1="178" x2="224" y2="178" stroke="#e07b00" stroke-width="1.5"/>
+  <line x1="158" y1="175" x2="158" y2="181" stroke="#e07b00" stroke-width="1.5"/>
+  <line x1="224" y1="175" x2="224" y2="181" stroke="#e07b00" stroke-width="1.5"/>
+  <text x="191" y="193" fill="#b85c00" text-anchor="middle" font-size="9">Debounce Window</text>
+
+  <!-- Debounce Window brackets (release: 394→454) -->
+  <line x1="394" y1="178" x2="454" y2="178" stroke="#e07b00" stroke-width="1.5"/>
+  <line x1="394" y1="175" x2="394" y2="181" stroke="#e07b00" stroke-width="1.5"/>
+  <line x1="454" y1="175" x2="454" y2="181" stroke="#e07b00" stroke-width="1.5"/>
+  <text x="424" y="193" fill="#b85c00" text-anchor="middle" font-size="9">Debounce Window</text>
+
+  <!-- Event markers: dashed vertical lines at debounce-settled edges -->
+  <!-- press event at x=224 -->
+  <line x1="224" y1="48" x2="224" y2="170" stroke="#7c3aed" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="227" y="44" fill="#6a1b9a" font-size="9">press</text>
+
+  <!-- click / release event at x=454 -->
+  <line x1="454" y1="48" x2="454" y2="170" stroke="#7c3aed" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="457" y="44" fill="#6a1b9a" font-size="9">click / release</text>
+
+</svg>

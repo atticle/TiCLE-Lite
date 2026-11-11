@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="190" viewBox="0 0 520 190">
+  <rect width="520" height="190" rx="12" fill="#fff0f0"/>
+  <text x="24" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#632b36">SPI: fast four-wire link</text>
+  <rect x="32" y="70" width="100" height="62" rx="8" fill="#ffffff" stroke="#bb5363" stroke-width="3"/>
+  <text x="82" y="107" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#632b36">Master</text>
+  <rect x="390" y="70" width="100" height="62" rx="8" fill="#ffffff" stroke="#bb5363" stroke-width="3"/>
+  <text x="440" y="107" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#632b36">Slave</text>
+  <line x1="132" y1="72" x2="390" y2="72" stroke="#d67c35" stroke-width="3"/><text x="260" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#8c4c1f">MOSI</text>
+  <line x1="390" y1="88" x2="132" y2="88" stroke="#3c8dba" stroke-width="3"/><text x="260" y="84" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#28627f">MISO</text>
+  <line x1="132" y1="106" x2="390" y2="106" stroke="#6b61b5" stroke-width="3"/><text x="260" y="102" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#4b4385">SCLK</text>
+  <line x1="132" y1="124" x2="390" y2="124" stroke="#48a36c" stroke-width="3"/><text x="260" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#317047">CS</text>
+</svg>

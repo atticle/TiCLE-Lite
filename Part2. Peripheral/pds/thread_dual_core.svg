@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="410" viewBox="0 0 1100 410">
+  <defs>
+    <marker id="arr-purple" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#6366f1"/>
+    </marker>
+    <marker id="arr-gray" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!-- Page background -->
+  <rect width="1100" height="410" fill="#f8fafc"/>
+
+  <!-- RP2350 chip outline -->
+  <rect x="18" y="14" width="1064" height="358" fill="#eef2f7" rx="14" stroke="#94a3b8" stroke-width="2"/>
+  <text x="550" y="40" text-anchor="middle"
+        font-family="'Courier New', Courier, monospace"
+        font-size="16" font-weight="bold" fill="#475569">RP2350</text>
+
+  <!-- ══════════════ Core 0 ══════════════ -->
+  <!-- Box -->
+  <rect x="46" y="52" width="440" height="228" fill="#eff6ff" rx="10" stroke="#2563eb" stroke-width="2"/>
+  <!-- Header fill (rounded-top-only path) -->
+  <path d="M 56,52 Q 46,52 46,62 V 92 H 486 V 62 Q 486,52 476,52 Z" fill="#2563eb"/>
+  <!-- Header labels -->
+  <text x="266" y="73" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="14" font-weight="bold" fill="white">Core 0</text>
+  <text x="266" y="87" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="11" fill="#bfdbfe">Main Thread</text>
+
+  <!-- Description lines -->
+  <text x="70" y="118"
+        font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#1e40af">
+    MicroPython starts here at boot
+  </text>
+  <text x="70" y="136"
+        font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#1e40af">
+    User script runs on Core 0
+  </text>
+  <line x1="66" y1="147" x2="476" y2="147" stroke="#bfdbfe" stroke-width="1.2"/>
+
+  <!-- Task bullets Core 0 -->
+  <circle cx="79" cy="163" r="5" fill="#2563eb"/>
+  <text x="93" y="168" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#374151">Display update  /  Pixel output</text>
+  <circle cx="79" cy="186" r="5" fill="#2563eb"/>
+  <text x="93" y="191" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#374151">Button check</text>
+  <circle cx="79" cy="209" r="5" fill="#2563eb"/>
+  <text x="93" y="214" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#374151">Sensor reading</text>
+  <circle cx="79" cy="232" r="5" fill="#2563eb"/>
+  <text x="93" y="237" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#374151">Main control loop</text>
+
+  <!-- Timeline bar Core 0 -->
+  <rect x="66" y="252" width="406" height="18" fill="#93c5fd" rx="5"/>
+  <text x="269" y="265" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#1e3a8a">
+    running ─────────────────────────────────────────
+  </text>
+
+  <!-- ══════════════ Core 1 ══════════════ -->
+  <!-- Box -->
+  <rect x="614" y="52" width="440" height="228" fill="#f0fdf4" rx="10" stroke="#16a34a" stroke-width="2"/>
+  <!-- Header fill -->
+  <path d="M 624,52 Q 614,52 614,62 V 92 H 1054 V 62 Q 1054,52 1044,52 Z" fill="#16a34a"/>
+  <!-- Header labels -->
+  <text x="834" y="73" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="14" font-weight="bold" fill="white">Core 1</text>
+  <text x="834" y="87" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="11" fill="#bbf7d0">Worker Thread</text>
+
+  <!-- Description lines -->
+  <text x="638" y="118"
+        font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#14532d">
+    Launched by _thread.start_new_thread()
+  </text>
+  <text x="638" y="136"
+        font-family="Arial, Helvetica, sans-serif" font-size="12.5" fill="#14532d">
+    Runs concurrently with Core 0
+  </text>
+  <line x1="634" y1="147" x2="1044" y2="147" stroke="#bbf7d0" stroke-width="1.2"/>
+
+  <!-- Task bullets Core 1 -->
+  <circle cx="647" cy="163" r="5" fill="#16a34a"/>
+  <text x="661" y="168" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#374151">Sensor polling loop</text>
+  <circle cx="647" cy="186" r="5" fill="#16a34a"/>
+  <text x="661" y="191" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#374151">Heavy computation</text>
+  <circle cx="647" cy="209" r="5" fill="#16a34a"/>
+  <text x="661" y="214" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#374151">Background animation  /  LED blink</text>
+  <circle cx="647" cy="232" r="5" fill="#16a34a"/>
+  <text x="661" y="237" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#374151">Long-running tasks</text>
+
+  <!-- Timeline bar Core 1 -->
+  <rect x="634" y="252" width="406" height="18" fill="#86efac" rx="5"/>
+  <text x="837" y="265" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#14532d">
+    running ─────────────────────────────────────────
+  </text>
+
+  <!-- "True Parallelism" annotation between the two bars -->
+  <rect x="492" y="252" width="116" height="18" fill="#f1f5f9" rx="4" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="550" y="264" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif" font-size="10" font-style="italic" fill="#475569">
+    simultaneously
+  </text>
+
+  <!-- ══════════════ Call arrow box ══════════════ -->
+  <!-- Background pill for the function call label -->
+  <rect x="490" y="118" width="120" height="58" fill="white" stroke="#6366f1" stroke-width="1.5" rx="8"/>
+  <text x="550" y="138" text-anchor="middle"
+        font-family="'Courier New', Courier, monospace" font-size="10.5" fill="#4338ca">_thread</text>
+  <text x="550" y="153" text-anchor="middle"
+        font-family="'Courier New', Courier, monospace" font-size="10.5" fill="#4338ca">.start_new</text>
+  <text x="550" y="168" text-anchor="middle"
+        font-family="'Courier New', Courier, monospace" font-size="10.5" fill="#4338ca">_thread(fn)</text>
+
+  <!-- Arrow: Core 0 → call box -->
+  <line x1="486" y1="147" x2="490" y2="147" stroke="#6366f1" stroke-width="2.2" marker-end="url(#arr-purple)"/>
+  <!-- Arrow: call box → Core 1 -->
+  <line x1="610" y1="147" x2="614" y2="147" stroke="#6366f1" stroke-width="2.2" marker-end="url(#arr-purple)"/>
+
+  <!-- ══════════════ Shared Variable ══════════════ -->
+  <rect x="300" y="305" width="500" height="58" fill="#fefce8" rx="10" stroke="#d97706" stroke-width="2"/>
+  <text x="550" y="328" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="13" font-weight="bold" fill="#92400e">Shared Variable</text>
+  <text x="550" y="347" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#78350f">
+    Accessible from both cores — protect with
+  </text>
+  <text x="550" y="360" text-anchor="middle"
+        font-family="'Courier New', Courier, monospace" font-size="11" fill="#b45309">
+    lock = _thread.allocate_lock()
+  </text>
+
+  <!-- Dashed lines from core timeline bars to shared variable box -->
+  <line x1="266" y1="270" x2="388" y2="305"
+        stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"
+        marker-end="url(#arr-gray)"/>
+  <line x1="834" y1="270" x2="712" y2="305"
+        stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"
+        marker-end="url(#arr-gray)"/>
+</svg>
